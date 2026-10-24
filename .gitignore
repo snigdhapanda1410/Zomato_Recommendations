@@ -1,0 +1,46 @@
+# ── Python ────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# ── Virtual Environment ──────────────────────
+venv/
+.venv/
+env/
+ENV/
+
+# ── Environment Variables ────────────────────
+.env
+
+# ── IDE / Editor ─────────────────────────────
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ── OS Files ─────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── Data Cache ───────────────────────────────
+data/cache/
+*.parquet
+!data/zomato_clean.parquet
+
+
+# ── Testing ──────────────────────────────────
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+
+# ── Distribution ─────────────────────────────
+dist/
+build/
+*.egg-info/
+
+# ── Logs ─────────────────────────────────────
+*.log
+logs/

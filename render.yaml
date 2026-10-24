@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: zomato-ai-backend
+    runtime: python
+    region: oregon
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn ui.server:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: GROQ_API_KEY
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DATASET_NAME
+        value: ManikaSaini/zomato-restaurant-recommendation
+      - key: LLM_MODEL
+        value: llama-3.3-70b-versatile
