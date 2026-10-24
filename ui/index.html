@@ -206,8 +206,9 @@
         </label>
         <div class="relative">
           <select id="areaSelect" class="w-full bg-[#1A1A24] border border-white/10 rounded-xl px-3 py-2.5 text-white appearance-none focus:outline-none focus:border-[#E23744]/60 focus:ring-1 focus:ring-[#E23744]/40 transition text-xs cursor-pointer">
+            <option value="" selected disabled>Select a Neighborhood (or Any)...</option>
             <option value="all">Any Neighborhood (Bangalore)</option>
-            <option value="Indiranagar" selected>Indiranagar (100ft & 12th Main)</option>
+            <option value="Indiranagar">Indiranagar (100ft & 12th Main)</option>
             <option value="Koramangala">Koramangala (4th & 5th Block)</option>
             <option value="Lavelle Road">Lavelle Road & Church Street</option>
             <option value="HSR Layout">HSR Layout (Sector 1-7)</option>
@@ -234,7 +235,7 @@
             <label for="b-low" class="block text-center py-2 px-1 rounded-xl bg-[#1A1A24] border border-white/5 text-[#8B8FA3] hover:text-white cursor-pointer transition text-[11px] font-medium truncate">Low ≤ ₹400</label>
           </div>
           <div>
-            <input type="radio" name="budget" id="b-med" value="med" class="hidden" checked>
+            <input type="radio" name="budget" id="b-med" value="med" class="hidden">
             <label for="b-med" class="block text-center py-2 px-1 rounded-xl bg-[#1A1A24] border border-white/5 text-[#8B8FA3] hover:text-white cursor-pointer transition text-[11px] font-medium truncate">Med ₹401–₹1k</label>
           </div>
           <div>
@@ -249,7 +250,9 @@
         <label class="block font-medium text-[#C4C4D0]">🍕 Preferred Cuisine</label>
         <div class="relative">
           <select id="cuisineSelect" class="w-full bg-[#1A1A24] border border-white/10 rounded-xl px-3 py-2.5 text-white appearance-none focus:outline-none focus:border-[#E23744]/60 focus:ring-1 focus:ring-[#E23744]/40 transition text-xs cursor-pointer">
-            <option value="Italian" selected>Italian, Artisanal Pizza & Pasta</option>
+            <option value="" selected disabled>Select a Cuisine (or Any)...</option>
+            <option value="all">Any Cuisine / All Varieties</option>
+            <option value="Italian">Italian, Artisanal Pizza & Pasta</option>
             <option value="South Indian">South Indian & Filter Coffee Heritage</option>
             <option value="Pan-Asian">Pan-Asian, Sushi & Dimsums</option>
             <option value="Continental">Modern European & Steaks</option>
@@ -267,11 +270,11 @@
       <div class="space-y-1.5">
         <div class="flex justify-between items-center text-xs">
           <label class="font-medium text-[#C4C4D0]">⭐ Minimum Diner Rating</label>
-          <span id="ratingVal" class="font-mono font-bold text-[#FFB800] bg-[#FFB800]/10 px-2 py-0.5 rounded-md border border-[#FFB800]/20">4.2 ★</span>
+          <span id="ratingVal" class="font-mono font-bold text-[#FFB800] bg-[#FFB800]/10 px-2 py-0.5 rounded-md border border-[#FFB800]/20">3.0 ★ (Any)</span>
         </div>
-        <input type="range" min="3.0" max="5.0" step="0.1" value="4.2" id="ratingRange" class="w-full cursor-pointer" oninput="document.getElementById('ratingVal').innerText = parseFloat(this.value).toFixed(1) + ' ★'">
+        <input type="range" min="3.0" max="5.0" step="0.1" value="3.0" id="ratingRange" class="w-full cursor-pointer" oninput="document.getElementById('ratingVal').innerText = parseFloat(this.value) <= 3.0 ? '3.0 ★ (Any)' : parseFloat(this.value).toFixed(1) + ' ★'">
         <div class="flex justify-between text-[10px] font-mono text-white/30">
-          <span>3.0</span>
+          <span>3.0 (Any)</span>
           <span>4.0</span>
           <span>5.0</span>
         </div>
@@ -283,7 +286,7 @@
           <span>✨ Vibe &amp; Special Preferences</span>
           <span class="text-[9px] text-[#E23744] bg-[#E23744]/10 px-1.5 py-0.5 rounded">AI prompt</span>
         </label>
-        <textarea id="vibeInput" rows="2" class="w-full bg-[#1A1A24] border border-white/10 rounded-xl p-2.5 text-xs text-white placeholder-[#5A5A6E] focus:outline-none focus:border-[#E23744]/60 focus:ring-1 focus:ring-[#E23744]/40 transition resize-none" placeholder="e.g. romantic rooftop, candlelit date, outdoor seating, wood-fired sourdough crust, craft cocktails...">romantic outdoor terrace, quiet ambient jazz, authentic wood-fired pizza and natural wines</textarea>
+        <textarea id="vibeInput" rows="2" class="w-full bg-[#1A1A24] border border-white/10 rounded-xl p-2.5 text-xs text-white placeholder-[#5A5A6E] focus:outline-none focus:border-[#E23744]/60 focus:ring-1 focus:ring-[#E23744]/40 transition resize-none" placeholder="e.g. romantic rooftop, candlelit date, outdoor seating, wood-fired sourdough crust, craft cocktails..."></textarea>
       </div>
 
       <!-- 6. Number of Recommendations -->
@@ -301,14 +304,14 @@
           <svg id="submitSpinner" class="w-4 h-4 transition-transform group-hover:rotate-12" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
           </svg>
-          <span id="submitBtnText">Consult AI Critic</span>
+          <span id="submitBtnText">Search for Recommendations</span>
         </button>
 
         <button type="button" onclick="resetFilters()" class="w-full py-2 px-3 rounded-xl bg-transparent border border-white/10 hover:border-white/20 hover:bg-white/[0.03] text-[#8B8FA3] hover:text-white text-xs font-medium transition flex items-center justify-center gap-1.5">
           <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
           </svg>
-          <span>Reset Form Defaults</span>
+          <span>Clear Filters</span>
         </button>
       </div>
     </form>
@@ -487,14 +490,14 @@
 
       <!-- SPECIAL SYSTEM NOTICES (Conditional Banners) -->
       <section class="space-y-3">
-        <!-- Smart Relaxation Banner -->
-        <div id="relaxationBanner" class="p-3.5 rounded-xl bg-[#111625] border-l-4 border-sky-400 border-y border-r border-sky-400/20 flex items-start gap-3">
+        <!-- Smart Relaxation Banner (Hidden until relaxation is triggered) -->
+        <div id="relaxationBanner" class="hidden p-3.5 rounded-xl bg-[#111625] border-l-4 border-sky-400 border-y border-r border-sky-400/20 flex items-start gap-3">
           <div class="p-1 rounded bg-sky-400/20 text-sky-300 mt-0.5">
             <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
           </div>
           <div class="text-xs">
             <span class="font-semibold text-sky-200">Smart Filter Relaxation Applied:</span>
-            <span id="relaxationDesc" class="text-[#8B8FA3] ml-1">Expanded boundary to adjacent neighborhood (Domlur / HAL 2nd Stage) to capture premier 4.5+ star match.</span>
+            <span id="relaxationDesc" class="text-[#8B8FA3] ml-1"></span>
           </div>
         </div>
       </section>
@@ -512,271 +515,45 @@
             <p class="text-xs text-[#8B8FA3] mt-0.5">Ranked by culinary semantic relevancy, ambience score, and verified diner reviews</p>
           </div>
 
-          <!-- Active Filter Chips -->
-          <div class="flex flex-wrap items-center gap-2">
+          <!-- Active Filter Chips (Hidden until search is triggered) -->
+          <div id="activeChipsContainer" class="hidden flex-wrap items-center gap-2">
             <span class="text-[11px] font-mono text-[#8B8FA3] mr-1 hidden sm:inline">Active constraints:</span>
             <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#1F1F2B] border border-[#E23744]/30 text-white/90 text-xs">
-              <span>📍</span> <span id="chipArea">Indiranagar</span>
+              <span>📍</span> <span id="chipArea">All Bangalore</span>
             </span>
             <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#1F1F2B] border border-[#E23744]/30 text-white/90 text-xs">
-              <span>💰</span> <span id="chipBudget">₹800 for two</span>
+              <span>💰</span> <span id="chipBudget">Any Budget</span>
             </span>
             <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#1F1F2B] border border-[#E23744]/30 text-white/90 text-xs">
-              <span>⭐</span> <span id="chipRating">≥ 4.2</span>
+              <span>⭐</span> <span id="chipRating">≥ 3.0</span>
             </span>
             <div class="h-4 w-[1px] bg-white/10 mx-1"></div>
             <span id="chipCandidates" class="text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-2 py-0.5 rounded-full">
-              47 Candidates Analyzed
+              0 Candidates Analyzed
             </span>
           </div>
         </div>
 
+        
         <!-- RECOMMENDATION CARDS CONTAINER (Stacked Vertically) -->
         <div class="space-y-4" id="cardsContainer">
-          
-          <!-- Card #1 -->
-          <article class="card-edge-glow rounded-2xl bg-[#1A1A24] border border-white/[0.07] p-5 sm:p-6 transition-all duration-300 hover:border-[#E23744]/60 hover:shadow-[0_12px_40px_rgba(226,55,68,0.14)] hover:-translate-y-1 group">
-            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-              <div>
-                <div class="flex items-center gap-2.5 mb-1.5">
-                  <span class="px-2.5 py-0.5 text-[10px] font-outfit font-extrabold uppercase tracking-wider rounded-full bg-gradient-to-r from-[#E23744] to-[#FF5A60] text-white shadow-[0_0_12px_rgba(226,55,68,0.4)]">
-                    #1 BEST MATCH
-                  </span>
-                  <span class="text-xs font-mono text-[#8B8FA3]">98.4% AI Match Score</span>
-                </div>
-                <h3 class="text-xl sm:text-2xl font-outfit font-extrabold text-white tracking-tight group-hover:text-[#FF6B6B] transition">
-                  Milano Sourdough &amp; Trattoria
-                </h3>
-                <p class="text-xs text-[#8B8FA3] mt-0.5">12th Main Road, HAL 2nd Stage, Indiranagar</p>
-              </div>
-
-              <!-- Green Rating Badge -->
-              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-1">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#065F46] text-[#34D399] font-outfit font-bold text-base shadow-[0_0_14px_rgba(52,211,153,0.25)] border border-[#34D399]/30 animate-badge-subtle">
-                  <span>★</span>
-                  <span>4.6</span>
-                </div>
-                <span class="text-[11px] font-mono text-[#8B8FA3]">Very High Sentiment</span>
-              </div>
+          <!-- Initial Blank / Empty State -->
+          <div id="initialEmptyState" class="p-8 sm:p-12 rounded-2xl bg-[#1A1A24]/60 border border-white/5 text-center space-y-4">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl shadow-inner">
+              🍽️
             </div>
-
-            <!-- Row of Metadata Badges -->
-            <div class="flex flex-wrap items-center gap-2 my-4">
-              <span class="px-3 py-1 rounded-full bg-[#111118] border border-white/10 text-white/90 text-xs font-medium flex items-center gap-1.5">
-                <span>🍽️</span> Italian, Artisanal Pizza
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(255,184,0,0.1)] border border-[rgba(255,184,0,0.25)] text-[#FFB800] text-xs font-medium font-mono flex items-center gap-1.5">
-                <span>💰</span> ₹800 for two
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.25)] text-[#60A5FA] text-xs font-medium flex items-center gap-1.5">
-                <span>📍</span> Indiranagar
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.25)] text-[#A78BFA] text-xs font-medium font-mono flex items-center gap-1.5">
-                <span>👥</span> 1,842 verified reviews
-              </span>
-              <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-medium flex items-center gap-1">
-                <span>🌿</span> Pet Friendly
-              </span>
-            </div>
-
-            <!-- AI Critic Verdict Box -->
-            <div class="rounded-xl bg-[#151520] border-l-4 border-[#E23744] p-4 text-xs space-y-1.5 shadow-inner">
-              <div class="flex items-center justify-between">
-                <span class="font-outfit font-extrabold uppercase tracking-wider text-[#E23744] text-[11px] flex items-center gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-[#E23744]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  AI Critic Verdict
-                </span>
-                <span class="text-[10px] font-mono text-white/40">Verified via Sentiment Clustering</span>
-              </div>
-              <p class="italic text-[#C4C4D0] leading-relaxed">
-                "Milano checks all your criteria for an authentic romantic evening. Their 48-hour fermented sourdough Neapolitan crust has captured universal acclaim among Bangalore foodies. The candlelit fairy-light courtyard provides natural separation between tables, making it quiet enough for intimate conversation while enjoying their house burrata and tiramisu."
+            <div class="max-w-md mx-auto space-y-1.5">
+              <h3 class="font-outfit font-bold text-lg text-white">Your Recommendations Will Appear Here</h3>
+              <p class="text-xs text-[#8B8FA3] leading-relaxed">
+                Select your preferred neighborhood, cuisine, or budget in the sidebar and click <span class="text-white font-medium font-outfit">"Search for Recommendations"</span> to discover personalized dining spots across Bangalore.
               </p>
             </div>
-
-            <!-- Collapsible Diner Details & Amenities -->
-            <details class="mt-4 pt-3 border-t border-white/5 group/details">
-              <summary class="text-xs font-medium text-[#8B8FA3] hover:text-white cursor-pointer select-none list-none flex items-center justify-between">
-                <span class="flex items-center gap-1.5 text-white/80">
-                  <span>📋</span> Diner Details &amp; Amenities
-                </span>
-                <span class="text-xs transition-transform group-open/details:rotate-180">▾</span>
-              </summary>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 pt-3 border-t border-white/5 text-xs text-[#8B8FA3]">
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Online Delivery</span>
-                  <p class="text-white font-medium flex items-center gap-1 text-xs">
-                    <span class="text-emerald-400">✅ Available</span> via Zomato
-                  </p>
-                </div>
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Table Booking</span>
-                  <p class="text-white font-medium flex items-center gap-1 text-xs">
-                    <span class="text-emerald-400">✅ Instant Confirmation</span>
-                  </p>
-                </div>
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Seating Types</span>
-                  <p class="text-white font-medium text-xs">Open-air Courtyard &amp; AC Dine-in</p>
-                </div>
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Alcohol Served</span>
-                  <p class="text-white font-medium text-xs">Wine, Sangria &amp; Craft Brews</p>
-                </div>
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Parking</span>
-                  <p class="text-white font-medium text-xs">Valet Parking Available</p>
-                </div>
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Payment Modes</span>
-                  <p class="text-white font-medium text-xs">Cards, UPI &amp; Zomato Pay</p>
-                </div>
-              </div>
-            </details>
-          </article>
-
-          <!-- Card #2 -->
-          <article class="card-edge-glow rounded-2xl bg-[#1A1A24] border border-white/[0.07] p-5 sm:p-6 transition-all duration-300 hover:border-[#E23744]/60 hover:shadow-[0_12px_40px_rgba(226,55,68,0.14)] hover:-translate-y-1 group">
-            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-              <div>
-                <div class="flex items-center gap-2.5 mb-1.5">
-                  <span class="px-2.5 py-0.5 text-[10px] font-outfit font-extrabold uppercase tracking-wider rounded-full bg-[#2A2A36] text-white/90 border border-white/10">
-                    #2 MATCH
-                  </span>
-                  <span class="text-xs font-mono text-[#8B8FA3]">94.1% AI Match Score</span>
-                </div>
-                <h3 class="text-xl sm:text-2xl font-outfit font-extrabold text-white tracking-tight group-hover:text-[#FF6B6B] transition">
-                  Chianti Artisanal Ristorante
-                </h3>
-                <p class="text-xs text-[#8B8FA3] mt-0.5">5th Block, Koramangala (Near Jyoti Nivas College)</p>
-              </div>
-
-              <!-- Green Rating Badge -->
-              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-1">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#065F46] text-[#34D399] font-outfit font-bold text-base shadow-[0_0_14px_rgba(52,211,153,0.25)] border border-[#34D399]/30">
-                  <span>★</span>
-                  <span>4.5</span>
-                </div>
-                <span class="text-[11px] font-mono text-[#8B8FA3]">2,410+ reviews</span>
-              </div>
-            </div>
-
-            <!-- Row of Metadata Badges -->
-            <div class="flex flex-wrap items-center gap-2 my-4">
-              <span class="px-3 py-1 rounded-full bg-[#111118] border border-white/10 text-white/90 text-xs font-medium flex items-center gap-1.5">
-                <span>🍽️</span> Italian, Continental, Pasta
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(255,184,0,0.1)] border border-[rgba(255,184,0,0.25)] text-[#FFB800] text-xs font-medium font-mono flex items-center gap-1.5">
-                <span>💰</span> ₹950 for two
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.25)] text-[#60A5FA] text-xs font-medium flex items-center gap-1.5">
-                <span>📍</span> Koramangala
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.25)] text-[#A78BFA] text-xs font-medium font-mono flex items-center gap-1.5">
-                <span>👥</span> 2,419 reviews
-              </span>
-              <span class="px-3 py-1 rounded-full bg-sky-500/10 border border-sky-500/20 text-sky-400 text-xs font-medium flex items-center gap-1">
-                <span>🍷</span> DIY Bruschetta Bar
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-2 text-[11px] text-[#8B8FA3]">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                <span>⚡</span> Or tap a Quick Discovery Preset above for an instant search
               </span>
             </div>
-
-            <!-- AI Critic Verdict Box -->
-            <div class="rounded-xl bg-[#151520] border-l-4 border-[#E23744] p-4 text-xs space-y-1.5 shadow-inner">
-              <div class="flex items-center justify-between">
-                <span class="font-outfit font-extrabold uppercase tracking-wider text-[#E23744] text-[11px] flex items-center gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-[#E23744]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  AI Critic Verdict
-                </span>
-                <span class="text-[10px] font-mono text-white/40">Gourmet Benchmark</span>
-              </div>
-              <p class="italic text-[#C4C4D0] leading-relaxed">
-                "Renowned for its complimentary do-it-yourself toasted bruschetta platter and warm vintage Tuscan brick aesthetic. Hand-rolled gnocchi in gorgonzola sauce and wood-fired thin crust Margherita are standout dishes with consistently flawless service."
-              </p>
-            </div>
-
-            <!-- Collapsible Diner Details & Amenities -->
-            <details class="mt-4 pt-3 border-t border-white/5 group/details">
-              <summary class="text-xs font-medium text-[#8B8FA3] hover:text-white cursor-pointer select-none list-none flex items-center justify-between">
-                <span class="flex items-center gap-1.5 text-white/80">
-                  <span>📋</span> Diner Details &amp; Amenities
-                </span>
-                <span class="text-xs transition-transform group-open/details:rotate-180">▾</span>
-              </summary>
-              <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 mt-3 pt-3 border-t border-white/5 text-xs text-[#8B8FA3]">
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Online Delivery</span>
-                  <p class="text-white font-medium flex items-center gap-1 text-xs"><span class="text-emerald-400">✅ Available</span></p>
-                </div>
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Table Booking</span>
-                  <p class="text-white font-medium flex items-center gap-1 text-xs"><span class="text-emerald-400">✅ Recommended</span></p>
-                </div>
-                <div class="p-2.5 rounded-lg bg-[#111118] border border-white/5 space-y-1">
-                  <span class="text-[10px] uppercase font-mono text-white/40">Wine Selection</span>
-                  <p class="text-white font-medium text-xs">Curated Italian Cellar</p>
-                </div>
-              </div>
-            </details>
-          </article>
-
-          <!-- Card #3 -->
-          <article class="card-edge-glow rounded-2xl bg-[#1A1A24] border border-white/[0.07] p-5 sm:p-6 transition-all duration-300 hover:border-[#E23744]/60 hover:shadow-[0_12px_40px_rgba(226,55,68,0.14)] hover:-translate-y-1 group">
-            <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-              <div>
-                <div class="flex items-center gap-2.5 mb-1.5">
-                  <span class="px-2.5 py-0.5 text-[10px] font-outfit font-extrabold uppercase tracking-wider rounded-full bg-[#2A2A36] text-white/90 border border-white/10">
-                    #3 MATCH
-                  </span>
-                  <span class="text-xs font-mono text-[#8B8FA3]">91.8% AI Match Score</span>
-                </div>
-                <h3 class="text-xl sm:text-2xl font-outfit font-extrabold text-white tracking-tight group-hover:text-[#FF6B6B] transition">
-                  Toscano Wine Bar &amp; Pizzeria
-                </h3>
-                <p class="text-xs text-[#8B8FA3] mt-0.5">UB City, Lavelle Road &amp; Indiranagar</p>
-              </div>
-
-              <!-- Green Rating Badge -->
-              <div class="flex sm:flex-col items-center sm:items-end justify-between gap-1">
-                <div class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-[#065F46] text-[#34D399] font-outfit font-bold text-base shadow-[0_0_14px_rgba(52,211,153,0.25)] border border-[#34D399]/30">
-                  <span>★</span>
-                  <span>4.4</span>
-                </div>
-                <span class="text-[11px] font-mono text-[#8B8FA3]">3,100+ reviews</span>
-              </div>
-            </div>
-
-            <!-- Row of Metadata Badges -->
-            <div class="flex flex-wrap items-center gap-2 my-4">
-              <span class="px-3 py-1 rounded-full bg-[#111118] border border-white/10 text-white/90 text-xs font-medium flex items-center gap-1.5">
-                <span>🍽️</span> Italian, Pizza, Gourmet Salads
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(255,184,0,0.1)] border border-[rgba(255,184,0,0.25)] text-[#FFB800] text-xs font-medium font-mono flex items-center gap-1.5">
-                <span>💰</span> ₹1,000 for two
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(59,130,246,0.1)] border border-[rgba(59,130,246,0.25)] text-[#60A5FA] text-xs font-medium flex items-center gap-1.5">
-                <span>📍</span> Lavelle Road
-              </span>
-              <span class="px-3 py-1 rounded-full bg-[rgba(139,92,246,0.1)] border border-[rgba(139,92,246,0.25)] text-[#A78BFA] text-xs font-medium font-mono flex items-center gap-1.5">
-                <span>👥</span> 3,120 reviews
-              </span>
-              <span class="px-3 py-1 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-400 text-xs font-medium flex items-center gap-1">
-                <span>🍷</span> Tableside Sommelier
-              </span>
-            </div>
-
-            <!-- AI Critic Verdict Box -->
-            <div class="rounded-xl bg-[#151520] border-l-4 border-[#E23744] p-4 text-xs space-y-1.5 shadow-inner">
-              <div class="flex items-center justify-between">
-                <span class="font-outfit font-extrabold uppercase tracking-wider text-[#E23744] text-[11px] flex items-center gap-1.5">
-                  <svg class="w-3.5 h-3.5 text-[#E23744]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-                  AI Critic Verdict
-                </span>
-                <span class="text-[10px] font-mono text-white/40">Sensory Match</span>
-              </div>
-              <p class="italic text-[#C4C4D0] leading-relaxed">
-                "An open terrace with garden pergola vines in Bangalore's culinary hub. Exceptional wood-smoked sourdough slices and slow-cooked risotto. An ideal pick if you value attentive tableside sommelier advice and peaceful evening jazz."
-              </p>
-            </div>
-          </article>
+          </div>
         </div>
 
         <!-- Fallback demonstration Banner -->
@@ -791,7 +568,7 @@
         </div>
 
         <!-- Bottom Action Strip -->
-        <div class="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/5">
+        <div id="bottomActionStrip" class="hidden flex-col sm:flex-row items-center justify-between gap-4 pt-4 border-t border-white/5">
           <button type="button" onclick="downloadCSV()" class="w-full sm:w-auto px-5 py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white/90 hover:text-white text-xs font-semibold transition flex items-center justify-center gap-2">
             <span>📥</span>
             <span>Export Recommendations (CSV)</span>
@@ -853,35 +630,7 @@
           : '');
 
 
-    let currentRecs = [
-      {
-        rank: 1,
-        name: "Milano Sourdough & Trattoria",
-        location: "Indiranagar",
-        rating: 4.6,
-        estimated_cost: "₹800 for two",
-        cuisine: "Italian, Artisanal Pizza",
-        match_score: 98.4
-      },
-      {
-        rank: 2,
-        name: "Chianti Artisanal Ristorante",
-        location: "Koramangala",
-        rating: 4.5,
-        estimated_cost: "₹950 for two",
-        cuisine: "Italian, Continental, Pasta",
-        match_score: 94.1
-      },
-      {
-        rank: 3,
-        name: "Toscano Wine Bar & Pizzeria",
-        location: "Lavelle Road",
-        rating: 4.4,
-        estimated_cost: "₹1,000 for two",
-        cuisine: "Italian, Pizza, Gourmet Salads",
-        match_score: 91.8
-      }
-    ];
+    let currentRecs = [];
 
     // Initialize options from backend on page load
     async function loadOptions() {
@@ -935,7 +684,7 @@
       const topN = parseInt(document.getElementById('recsRange').value) || 3;
 
       // Update active constraint chips immediately
-      const areaName = area === 'all' ? 'All Bangalore' : area;
+      const areaName = (!area || area === 'all') ? 'All Bangalore' : area;
       document.getElementById('chipArea').innerText = areaName;
       
       const budgetDisplayMap = {
@@ -944,15 +693,15 @@
         'med': '₹401–₹1k',
         'high': '> ₹1,000'
       };
-      document.getElementById('chipBudget').innerText = budgetDisplayMap[budgetVal] || '₹800 for two';
-      document.getElementById('chipRating').innerText = '≥ ' + parseFloat(rating).toFixed(1);
+      document.getElementById('chipBudget').innerText = budgetRadio ? (budgetDisplayMap[budgetVal] || 'Any Budget') : 'Any Budget';
+      document.getElementById('chipRating').innerText = parseFloat(rating) <= 3.0 ? '≥ 3.0 ★ (Any)' : '≥ ' + parseFloat(rating).toFixed(1) + ' ★';
 
       // Loading state on button and cards
       const submitBtn = document.getElementById('submitBtn');
       const submitBtnText = document.getElementById('submitBtnText');
       const cardsContainer = document.getElementById('cardsContainer');
       
-      submitBtnText.innerText = "Consulting AI Critic...";
+      submitBtnText.innerText = "Searching for Recommendations...";
       submitBtn.classList.add('opacity-80');
       cardsContainer.classList.add('loading-shimmer');
 
@@ -961,10 +710,10 @@
 
       try {
         const payload = {
-          location: area === 'all' ? null : area,
-          budget: budgetVal,
-          cuisine: cuisine === 'all' ? null : cuisine,
-          min_rating: parseFloat(rating),
+          location: (!area || area === 'all') ? null : area,
+          budget: budgetRadio ? budgetVal : null,
+          cuisine: (!cuisine || cuisine === 'all') ? null : cuisine,
+          min_rating: parseFloat(rating) <= 3.0 ? null : parseFloat(rating),
           additional_prefs: vibe,
           top_n: topN
         };
@@ -977,9 +726,21 @@
 
         if (res.ok) {
           const data = await res.json();
-          if (data.recommendations && data.recommendations.length > 0) {
+                    if (data.recommendations && data.recommendations.length > 0) {
             renderCards(data.recommendations);
             currentRecs = data.recommendations;
+            
+            // Show active constraints & bottom action strip
+            const activeChips = document.getElementById('activeChipsContainer');
+            if (activeChips) {
+              activeChips.classList.remove('hidden');
+              activeChips.classList.add('flex');
+            }
+            const bottomStrip = document.getElementById('bottomActionStrip');
+            if (bottomStrip) {
+              bottomStrip.classList.remove('hidden');
+              bottomStrip.classList.add('flex');
+            }
             
             // Update candidates and count
             const cand = data.total_matches || data.recommendations.length * 15;
@@ -1008,7 +769,7 @@
       } catch (err) {
         console.warn("Backend API error, falling back to simulated smooth refresh:", err);
       } finally {
-        submitBtnText.innerText = "Consult AI Critic";
+        submitBtnText.innerText = "Search for Recommendations";
         submitBtn.classList.remove('opacity-80');
         cardsContainer.classList.remove('loading-shimmer');
       }
@@ -1152,15 +913,56 @@
     }
 
     function resetFilters() {
-      document.getElementById('areaSelect').value = 'Indiranagar';
-      document.getElementById('cuisineSelect').value = 'Italian';
-      document.getElementById('ratingRange').value = 4.2;
-      document.getElementById('ratingVal').innerText = '4.2 ★';
-      document.getElementById('vibeInput').value = 'romantic outdoor terrace, quiet ambient jazz, authentic wood-fired pizza and natural wines';
-      document.getElementById('b-med').checked = true;
+      document.getElementById('areaSelect').selectedIndex = 0;
+      document.getElementById('cuisineSelect').selectedIndex = 0;
+      document.getElementById('ratingRange').value = 3.0;
+      document.getElementById('ratingVal').innerText = '3.0 ★ (Any)';
+      document.getElementById('vibeInput').value = '';
+      document.querySelectorAll('input[name="budget"]').forEach(r => r.checked = false);
       document.getElementById('recsRange').value = 3;
       document.getElementById('recsCountVal').innerText = '3 Results';
-      triggerRecommend();
+
+      const activeChips = document.getElementById('activeChipsContainer');
+      if (activeChips) {
+        activeChips.classList.add('hidden');
+        activeChips.classList.remove('flex');
+      }
+      const relaxBanner = document.getElementById('relaxationBanner');
+      if (relaxBanner) relaxBanner.classList.add('hidden');
+      const fallbackBanner = document.getElementById('fallbackBanner');
+      if (fallbackBanner) fallbackBanner.classList.add('hidden');
+      const bottomStrip = document.getElementById('bottomActionStrip');
+      if (bottomStrip) {
+        bottomStrip.classList.add('hidden');
+        bottomStrip.classList.remove('flex');
+      }
+
+      showInitialEmptyState();
+      currentRecs = [];
+    }
+
+    function showInitialEmptyState() {
+      const container = document.getElementById('cardsContainer');
+      if (container) {
+        container.innerHTML = `
+          <div id="initialEmptyState" class="p-8 sm:p-12 rounded-2xl bg-[#1A1A24]/60 border border-white/5 text-center space-y-4">
+            <div class="w-14 h-14 mx-auto rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-3xl shadow-inner">
+              🍽️
+            </div>
+            <div class="max-w-md mx-auto space-y-1.5">
+              <h3 class="font-outfit font-bold text-lg text-white">Your Recommendations Will Appear Here</h3>
+              <p class="text-xs text-[#8B8FA3] leading-relaxed">
+                Select your preferred neighborhood, cuisine, or budget in the sidebar and click <span class="text-white font-medium font-outfit">"Search for Recommendations"</span> to discover personalized dining spots across Bangalore.
+              </p>
+            </div>
+            <div class="flex flex-wrap items-center justify-center gap-2 pt-2 text-[11px] text-[#8B8FA3]">
+              <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-white/5 border border-white/10">
+                <span>⚡</span> Or tap a Quick Discovery Preset above for an instant search
+              </span>
+            </div>
+          </div>
+        `;
+      }
     }
 
     function downloadCSV() {

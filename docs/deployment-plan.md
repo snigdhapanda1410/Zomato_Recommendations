@@ -212,8 +212,8 @@ Open your Vercel deployment URL (`https://YOUR-VERCEL-DOMAIN.vercel.app`) in a b
 - [ ] **Initial Page Load**: UI matches [stitch/screen.png](file:///c:/Projects/Zomato_recommendation/stitch/screen.png) with deep `#0D0D12` background, sidebar inputs, and hero stats.
 - [ ] **Live Bangalore Engine Indicator**: Emerald dot pulses at the top header.
 - [ ] **1-Click Presets**: Clicking *Romantic Date Night*, *Cozy Italian Pizza*, *Work-Friendly Cafe*, or *Authentic Desi Feast* immediately populates filters and loads cards.
-- [ ] **Form Submission**: Adjusting Area, Budget radio pills, Rating slider, and entering custom vibe in the textarea updates recommendations upon clicking **Consult AI Critic**.
-- [ ] **Loading Animation**: Button displays *Consulting AI Critic...* with skeleton shimmer during LLM round-trip.
+- [ ] **Form Submission**: Adjusting Area, Budget radio pills, Rating slider, and entering custom vibe in the textarea updates recommendations upon clicking **Search for Recommendations**.
+- [ ] **Loading Animation**: Button displays *Searching for Recommendations...* with skeleton shimmer during LLM round-trip.
 - [ ] **Diner Details Accordion**: Expanding *📋 Diner Details & Amenities* opens the 6-item amenities grid.
 - [ ] **CSV Export**: Clicking *Export Recommendations (CSV)* generates and downloads `Zomato_AI_Bangalore_Recommendations.csv`.
 
