@@ -1,0 +1,15 @@
+# Ignore Python backend files on Vercel (Backend runs on Railway)
+requirements.txt
+pyproject.toml
+Pipfile
+Pipfile.lock
+*.py
+*.pyc
+__pycache__/
+venv/
+.venv/
+src/
+tests/
+data/
+railway.json
+Procfile
