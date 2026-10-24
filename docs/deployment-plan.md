@@ -79,7 +79,7 @@ Railway will host the containerized ASGI REST API providing `/api/options`, `/ap
    - In your Railway project, click on your service.
    - Go to **Settings** → **Networking** (or **Public Networking**).
    - Click **Generate Domain**.
-   - Note down the generated domain URL (e.g., `https://zomato-ai-backend.up.railway.app`).
+   - Note down the generated domain URL (e.g., `https://zomatorecommendations-production.up.railway.app`).
 
 7. **Healthcheck Configuration** (handled automatically by `railway.json`):
    - Path: `/api/health`

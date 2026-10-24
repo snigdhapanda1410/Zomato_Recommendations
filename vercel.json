@@ -4,7 +4,7 @@
   "rewrites": [
     {
       "source": "/api/:match*",
-      "destination": "https://zomato-ai-backend.up.railway.app/api/:match*"
+      "destination": "https://zomatorecommendations-production.up.railway.app/api/:match*"
     }
   ],
   "headers": [
