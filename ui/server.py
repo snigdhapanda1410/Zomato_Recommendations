@@ -72,7 +72,9 @@ def lookup_metadata(name: str) -> dict[str, Any]:
 
 async def index_handler(request: Request) -> Response:
     """Serve the Stitch dark-theme web page."""
-    html_path = Path(__file__).parent / "index.html"
+    html_path = PROJECT_ROOT / "index.html"
+    if not html_path.exists():
+        html_path = Path(__file__).parent / "index.html"
     if not html_path.exists():
         html_path = PROJECT_ROOT / "stitch" / "code.html"
     return HTMLResponse(html_path.read_text(encoding="utf-8"))
