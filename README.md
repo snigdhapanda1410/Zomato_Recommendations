@@ -49,8 +49,8 @@ Finding the right restaurant usually requires juggling multiple search criteria�
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/snigdhapanda1410/First_project.git
-   cd First_project/Zomato_recommendation
+   git clone https://github.com/snigdhapanda1410/Zomato_Recommendations.git
+   cd Zomato_Recommendations
    ```
 
 2. **Create and activate virtual environment**:
@@ -198,8 +198,19 @@ RecommendationEngine (Central Orchestrator)
    └────┬────────────────────────┘
         │
         ▼
-RecommendationResult ──► Rendered in Streamlit UI Cards
+RecommendationResult ──► Rendered in Stitch Dark Theme UI (HTML/Tailwind) & Streamlit
 ```
+
+---
+
+## 🚀 Deployment (Railway & Vercel)
+
+The project is architected for continuous multi-cloud deployment:
+
+- **Backend (Railway)**: Containerized ASGI Python service (`uvicorn ui.server:app`) with bundled 175 KB clean dataset ([`data/zomato_clean.parquet`](file:///c:/Projects/Zomato_recommendation/data/zomato_clean.parquet)) for instant ~2s cold boots without remote download overhead. Configured via [`railway.json`](file:///c:/Projects/Zomato_recommendation/railway.json) and [`Procfile`](file:///c:/Projects/Zomato_recommendation/Procfile).
+- **Frontend (Vercel)**: Global Edge CDN hosting [`index.html`](file:///c:/Projects/Zomato_recommendation/index.html) with built-in reverse proxy rewrites configured in [`vercel.json`](file:///c:/Projects/Zomato_recommendation/vercel.json) to proxy `/api/*` requests directly to Railway.
+
+For detailed setup, environment variables, and runbooks, refer to [`docs/deployment-plan.md`](file:///c:/Projects/Zomato_recommendation/docs/deployment-plan.md).
 
 ---
 

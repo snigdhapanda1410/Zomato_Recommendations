@@ -139,19 +139,24 @@ class RecommendationEngine:
         """
         if self._preprocessed_df is None or force_reload:
             # Check for bundled clean production dataset first (fastest boot, zero network latency)
-            bundled_clean_path = Path(self.config.cache_dir).parent / "zomato_clean.parquet"
-            if bundled_clean_path.exists() and not force_reload:
-                try:
-                    self._preprocessed_df = pd.read_parquet(bundled_clean_path)
-                    logger.info(
-                        f"Loaded bundled clean dataset from '{bundled_clean_path}' "
-                        f"with {len(self._preprocessed_df):,} restaurants."
-                    )
-                    return self._preprocessed_df
-                except Exception as exc:
-                    logger.warning(
-                        f"Failed to load bundled clean dataset: {exc}. Falling back to standard pipeline."
-                    )
+            candidate_paths = [
+                Path(self.config.cache_dir).parent / "zomato_clean.parquet",
+                Path(__file__).resolve().parent.parent.parent / "data" / "zomato_clean.parquet",
+            ]
+            for clean_path in candidate_paths:
+                if clean_path.exists() and not force_reload:
+                    try:
+                        self._preprocessed_df = pd.read_parquet(clean_path)
+                        logger.info(
+                            f"Loaded bundled clean dataset from '{clean_path}' "
+                            f"with {len(self._preprocessed_df):,} restaurants."
+                        )
+                        return self._preprocessed_df
+                    except Exception as exc:
+                        logger.warning(
+                            f"Failed to load bundled clean dataset from '{clean_path}': {exc}."
+                        )
+
 
             logger.info("Loading and preprocessing dataset for RecommendationEngine...")
             raw_df = self.loader.load(force_download=force_reload)

@@ -848,7 +848,9 @@
     // 3. File protocol fallback to http://localhost:8000
     // 4. Default to relative path '' for Vercel deployment with rewrites (/api/...)
     const API_BASE = window.ENV_API_BASE 
-      || (window.location.protocol === 'file:' ? 'http://localhost:8000' : (window.location.port === '8000' ? '' : ''));
+      || ((window.location.protocol === 'file:' || (window.location.hostname === 'localhost' && window.location.port !== '8000'))
+          ? 'http://localhost:8000' 
+          : '');
 
 
     let currentRecs = [
