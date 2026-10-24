@@ -190,6 +190,36 @@ class LLMClient:
                 raise LLMAPIKeyError(f"Invalid Groq API key: {exc}") from exc
 
             except Exception as exc:
+                if (
+                    isinstance(exc, groq.NotFoundError)
+                    or "model_not_found" in str(exc).lower()
+                    or "does not exist or you do not have access" in str(exc).lower()
+                ):
+                    logger.warning(
+                        f"Groq model '{self.model}' not found or not accessible: {exc}. Attempting model fallback..."
+                    )
+                    fallback_candidates = [
+                        "openai/gpt-oss-120b",
+                        "qwen/qwen3.8-27b",
+                        "openai/gpt-oss-20b",
+                        "llama-3.1-8b-instant",
+                        "llama-3.3-70b-versatile",
+                    ]
+                    for fallback_model in fallback_candidates:
+                        if fallback_model == self.model:
+                            continue
+                        try:
+                            logger.info(f"Retrying with fallback model '{fallback_model}'...")
+                            kwargs["model"] = fallback_model
+                            response = client.chat.completions.create(**kwargs)
+                            content = response.choices[0].message.content
+                            if content is not None:
+                                logger.info(f"Model fallback to '{fallback_model}' succeeded!")
+                                self.model = fallback_model
+                                return content
+                        except Exception as alt_exc:
+                            logger.warning(f"Fallback model '{fallback_model}' also failed: {alt_exc}")
+
                 raise LLMError(f"Unexpected error during Groq API call: {exc}") from exc
 
         raise LLMError(f"Failed to generate response: {last_error}")

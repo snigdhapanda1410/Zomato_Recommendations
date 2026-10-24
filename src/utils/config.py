@@ -43,7 +43,7 @@ class AppConfig:
     # ── LLM Configuration ────────────────────────
     groq_api_key: str = ""
     gemini_api_key: str = ""
-    llm_model: str = "llama-3.3-70b-versatile"
+    llm_model: str = "openai/gpt-oss-120b"
     llm_temperature: float = 0.7
     llm_max_retries: int = 3
     llm_timeout_seconds: int = 30
@@ -96,7 +96,7 @@ class AppConfig:
         self.llm_model = (
             llm_model
             if llm_model is not None
-            else os.getenv("LLM_MODEL", "llama-3.3-70b-versatile")
+            else os.getenv("LLM_MODEL", "openai/gpt-oss-120b")
         )
         self.llm_temperature = (
             float(llm_temperature)
